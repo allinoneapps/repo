@@ -1,0 +1,8 @@
+CACHE MANIFEST
+# 2016-04-01 v1.0.0
+
+CACHE:
+favicon.ico
+NETWORK:
+http://*
+https://*
