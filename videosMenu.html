@@ -25,7 +25,8 @@
 		   $(".clickable").on("click", function() {
 				var id = this.id;
 				var title =  $('#'+id).data('title');
-				window.JSInterface.LaunchBrowserIntent("https://allinoneapps.github.io/core/userAllIn1.html?t="+title+"&uid="+id+"&nv=50");
+				var link = "https://allinoneapps.github.io/core/userAllIn1.html?t="+title+"&uid="+id+"&nv=50";
+				window.JSInterface.LaunchBrowserIntent(link);
 			});
 		}
 		loadElements(langData);
