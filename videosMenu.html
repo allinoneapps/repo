@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Videos Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script>
+	$(function(){
+		function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+			return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+		var allData = {"ma":[{"t":"Entertainment","uid":"RajshriMarathi"},{"t":"News","uid":"Zee24Taas"},{"t":"Recipes","uid":"ruchkarmejwani"}],"hi":[{"t":"Entertainment","uid":"erosentertainment"},{"t":"News","uid":"zeenews"},{"t":"Recipes","uid":"sanjeevkapoorkhazana"},{"t":"Cricket","uid":"CricketICC"}]};
+		var language = getParameterByName('l') ? getParameterByName('l') : '';
+		
+		
+		var langData = allData[language];
+		function loadElements(items) {		
+			$.each(items, function(key, value) {
+				var element = '<section class="card clickable" data-title="'+value.t+'" id="'+value.uid+'"><h1><strong><span align="middle" class="menuItem">'+ value.t+'</span></strong> </h1></section>';
+				$('#main').append(element);
+			});
+		   $(".clickable").on("click", function() {
+				var id = this.id;
+				var title =  $('#'+id).data('title');
+				//window.JSInterface.LaunchBrowserIntent("https://1a0504a0409d448db9a2697326e5de8d3733a18e.googledrive.com/host/0B6RM49o9XB4AV1V0eXFPTThub2s/userAllIn1-v2.html?t="+title+"&uid="+id+"&nv=50");
+			});
+		}
+		loadElements(langData);
+		});
+    </script>
+    <style>
+        body {
+            background: #d5d5d5;
+            margin: 0;
+        }
+        #main {
+            display: block;
+            position: relative;
+            padding: 0.7rem 0 0;
+            background: #d5d5d5;
+            border-radius: .25rem;
+            overflow: hidden;
+            transform: scale(.95);
+            transform-origin: center 3rem;
+            transition: transform .3s;
+        }
+        input,
+        .card {
+            position: relative;
+            z-index: 2;
+        }
+        .card {
+            padding: 0.1rem 0.75rem;
+            box-shadow: 0 1px 2px #aaa;
+            background: white;
+            margin: 0 0.5rem 0.5rem;
+            border-radius: 3px;
+            user-select: none;
+        }
+        .card:after {
+            position: absolute;
+            font-size: .9rem;
+            top: 1.5rem;
+            right: 1rem;
+            border: thin solid gray;
+            color: gray;
+            width: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        h1 {
+            font-size: 1.4rem;
+            font-weight: 200;
+        }
+        strong {
+            font-weight: 400;
+            color: #00557f;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <section class="card" id="-1">
+            <h1><span align="middle" class="menuItem"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:inline-block;width:320px;height:50px" data-ad-client="ca-pub-2890843430898782" data-ad-slot="7868406589"></ins><script>(adsbygoogle=window.adsbygoogle || []).push({});</script> </span> </h1>
+        </section>
+		
+    </div>
+</body>
+
+</html>

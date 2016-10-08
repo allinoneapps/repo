@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Videos All In 1
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js">
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            var pageTitle = getParameterByName('t') ? getParameterByName('t') : '';
+            $('#s').attr("placeholder", "Search " + pageTitle + " videos");
+            var userId = getParameterByName('uid') ? getParameterByName('uid') : '';
+            var playlistId = '';
+            var numVideos = getParameterByName('nv') ? getParameterByName('nv') : 50;
+            $('#pageTitle').html(pageTitle);
+            if (userId === '') {
+                playlistId = getParameterByName('pid') ? getParameterByName('pid') : '';
+                getVids(playlistId);
+            } else {
+                parseRSS(userId);
+            }
+
+            function parseRSS(userId) {
+
+                // Get Uploads Playlist
+                $.get(
+                    "https://www.googleapis.com/youtube/v3/channels", {
+                        part: 'contentDetails',
+                        forUsername: userId,
+                        key: 'AIzaSyDuugQ-BUQSMELZD8-3E_ShrnGtT60imP8'
+                    },
+                    function(data) {
+                        $.each(data.items, function(i, item) {
+                            pid = item.contentDetails.relatedPlaylists.uploads;
+                            getVids(pid);
+                        });
+                    }
+                );
+            }
+            //Get Videos
+            function getVids(pid) {
+                $.get(
+                    "https://www.googleapis.com/youtube/v3/playlistItems", {
+                        part: 'snippet',
+                        maxResults: 50,
+                        playlistId: pid,
+                        key: 'AIzaSyDuugQ-BUQSMELZD8-3E_ShrnGtT60imP8'
+                    },
+                    function(data) {
+                        var results;
+                        renderFeed(data);
+                    }
+                );
+            }
+            var videos = new Array();
+
+            function renderFeed(feed) {
+                for (var i = 0; i < feed.items.length; i++) {
+                    var videoObj = {
+                        "videoid": feed.items[i].snippet.resourceId.videoId,
+                        "title": feed.items[i].snippet.title
+                    };
+                    videos.push(videoObj);
+                }
+                loadVideos(videos);
+            }
+
+            function youtube_parser(url) {
+                var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+                var match = url.match(regExp);
+                if (match && match[7].length == 11) {
+                    return match[7];
+                } else {
+                    console.log('incorrect url');
+                }
+            }
+
+            function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+                return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+
+            function loadVideos(videos) {
+                $.each(videos, function(key, value) {
+                    var html = ['<span class="row"><section class="card"><ul  style="margin-left: -40px" class="name clickable" data-title="' + value.title + '" id="' + value.videoid + '" ><a  href="https://www.youtube.com/watch?v=' + value.videoid + '" style="display: block" target="_blank" data-title="' + value.title + '" id="' + value.videoid + '">'];
+                    html.push('<img src="https://i.ytimg.com/vi/' + value.videoid + '/0.jpg" style="max-width: 85%">');
+                    html.push('<li><p><strong>', value.title, '</strong></p></li>');
+                    html.push('<li><p><em>', value.pubDate, '</em></p></li>');
+                    html.push('</a></ul></section></span>');
+                    $('#videos').append(html.join(''));
+
+                });
+                $(".clickable").on("click", function() {
+                    var id = '#' + this.id;
+                    window.JSInterface.LaunchYouTubePlayer(this.id, $(id).data('title'));
+                });
+            }
+
+            $("#s").on("keyup click input", function() {
+                if (this.value.length > 0) {
+                    $(".row").show().filter(function() {
+                        return $(this).find('.name').text().toLowerCase().indexOf($("#s").val().toLowerCase()) === -1;
+                    }).hide();
+                } else {
+                    $(".row").show();
+                }
+            });
+        });
+    </script>
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            margin: 0;
+            background: #d5d5d5;
+            overflow-y: scroll;
+        }
+        
+        ul {
+            list-style-type: none;
+        }
+        
+        #videos {
+            text-align: center;
+            width: 100%;
+        }
+        
+        input.holo[type='text'] {
+            /* You can set width to whatever you like */
+            font-family: "Roboto", "Droid Sans", sans-serif;
+            font-size: 16px;
+            margin: 0;
+            padding: 8px 8px 6px 8px;
+            position: relative;
+            display: block;
+            outline: none;
+            border: none;
+            background: bottom left linear-gradient(#a9a9a9, #a9a9a9) no-repeat, bottom center linear-gradient(#a9a9a9, #a9a9a9) repeat-x, bottom right linear-gradient(#a9a9a9, #a9a9a9) no-repeat;
+            background-size: 1px 6px, 1px 1px, 1px 6px;
+        }
+        
+        input.holo[type='text']:hover,
+        input.holo[type='text']:focus {
+            background: bottom left linear-gradient(#0099cc, #0099cc) no-repeat, bottom center linear-gradient(#0099cc, #0099cc) repeat-x, bottom right linear-gradient(#0099cc, #0099cc) no-repeat;
+            background-size: 1px 6px, 1px 1px, 1px 6px;
+        }
+        
+        input.search {
+            background: white;
+            border: 1px double #DDD;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #333;
+            color: #666;
+            float: left;
+            padding: 5px 10px;
+            width: 165px;
+            outline: none;
+        }
+        
+        input.search {
+            /*background-image: url(icon-search.png);
+          background-position: 10px center;*/
+            padding-left: 35px;
+            background-repeat: no-repeat;
+            font-weight: bold;
+        }
+        
+        #main {
+            display: block;
+            position: relative;
+            padding: 0.7rem 0 0;
+            background: #d5d5d5;
+            border-radius: .25rem;
+            overflow: hidden;
+            transform: scale(.95);
+            transform-origin: center 3rem;
+            transition: transform .3s;
+        }
+        
+        input,
+        .card {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card {
+            padding: 0.1rem 0.75rem;
+            box-shadow: 0 1px 2px #aaa;
+            background: white;
+            margin: 0 0.5rem 0.5rem;
+            border-radius: 3px;
+            user-select: none;
+        }
+        
+        .card:after {
+            position: absolute;
+            font-size: .9rem;
+            top: 1.5rem;
+            right: 1rem;
+            border: thin solid gray;
+            color: gray;
+            width: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        h1 {
+            font-size: 1.4rem;
+            font-weight: 200;
+        }
+        
+        strong {
+            font-weight: 300;
+            color: #00557f;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main" style="width: 100%;">
+        <div id="body">
+            <div style="height: 40px; position: fixed; top: 0; width: 100%; z-index: 5">
+                <input id="s" class="search clearable" type="text" name="Search" placeholder="Search videos in this page" style="width: 82%;margin-right: 20px; font-weight: bold; line-height: 25px; " />
+            </div>
+            <div align="center" style="margin-top: 45px">
+                <section class="card">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+                    </script>
+                    <!-- Marathi All In 1 Videos -->
+                    <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-2890843430898782" data-ad-slot="7135853389">
+            </ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </section>
+            </div>
+            <div id="videos">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
