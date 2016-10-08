@@ -1,0 +1,8 @@
+CACHE MANIFEST
+# 2016-03-20 v1.0.0
+
+CACHE:
+
+NETWORK:
+http://*
+https://*
