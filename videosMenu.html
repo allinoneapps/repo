@@ -12,24 +12,35 @@
 				results = regex.exec(location.search);
 			return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 		}
-		var allData = {"ma":[{"t":"Entertainment","uid":"RajshriMarathi"},{"t":"News","uid":"Zee24Taas"},{"t":"Recipes","uid":"ruchkarmejwani"}],"hi":[{"t":"Entertainment","uid":"erosentertainment"},{"t":"News","uid":"zeenews"},{"t":"Recipes","uid":"sanjeevkapoorkhazana"},{"t":"Cricket","uid":"CricketICC"}]};
-		var language = getParameterByName('l') ? getParameterByName('l') : '';
-		
-		
-		var langData = allData[language];
+		var allData = {"ma":[{"t":"Entertainment","uid":"RajshriMarathi"},{"t":"News","uid":"Zee24Taas"},{"t":"Recipes","uid":"ruchkarmejwani"},{"t":"Cricket","uid":"CricketICC"}],"hi":[{"t":"Entertainment","uid":"erosentertainment"},{"t":"News","uid":"zeenews"},{"t":"Recipes","uid":"sanjeevkapoorkhazana"},{"t":"Cricket","uid":"CricketICC"}],"abc":[{"t":"Finger Family Songs","pid":"PLT1rvk7Trkw6dKQ_e0lgcKK93zy8dG3IV"},{"t":"ABC Songs","pid":"PL97977A770B5B12E2"},{"t":"Nursery Rhymes","pid":"PLT1rvk7Trkw4wNcrnkM40LPuRRx76seZp"}],"gu":[{"t":"News","uid":"DDGirnarOfficial"},{"t":"Movies","uid":"goldminesgujarati"},{"t":"Cricket","uid":"CricketICC"}],"pu":[{"t":"News","uid":"PTCNewsIndia"},{"t":"Movies-Songs-Comedy","uid":"catrackentertainment"},{"t":"Cricket","uid":"CricketICC"},{"t":"Recipes","uid":"ChawlasKitchen"}],"nepaliGuru":[{"t":"Collection 1","pid":"PL0kQjbedhGLcnRVbnn0fa7yw5G5ZKf4Mu"},{"t":"Collection 2","pid":"PLhpI5gbeM3gp_Og0F5C5oGOypxXdDY0Tl"}]};
+		var language = getParameterByName('l') ? getParameterByName('l') : '';		
 		function loadElements(items) {		
 			$.each(items, function(key, value) {
-				var element = '<section class="card clickable" data-title="'+value.t+'" id="'+value.uid+'"><h1><strong><span align="middle" class="menuItem">'+ value.t+'</span></strong> </h1></section>';
+				var usePid = true;
+				var id = '';
+				if(value.uid && value.uid != ''){
+					usePid = false;
+					id = value.uid;
+				}
+				else if(value.pid && value.pid != ''){
+					id = value.pid;
+				}
+				var element = '<section class="card clickable" data-title="'+value.t+'" data-pid='+usePid+' id="'+id+'"><h1><strong><span align="middle" class="menuItem">'+ value.t+'</span></strong> </h1></section>';
 				$('#main').append(element);
 			});
 		   $(".clickable").on("click", function() {
 				var id = this.id;
 				var title =  $('#'+id).data('title');
-				var link = "https://allinoneapps.github.io/core/userAllIn1.html?t="+title+"&uid="+id+"&nv=50";
+				var isPid = $('#'+id).data('pid');
+				var idToPass = isPid ? 'pid' : 'uid';
+				var link = "https://allinoneapps.github.io/repo/userAllIn1.html?t="+title+"&"+idToPass+"="+id+"&nv=50";
+				if(!window.JSInterface){
+					location.href = link;
+				}
 				window.JSInterface.LaunchBrowserIntent(link);
 			});
 		}
-		loadElements(langData);
+		loadElements(allData[language]);
 		});
     </script>
     <style>
