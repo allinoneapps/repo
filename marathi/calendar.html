@@ -145,8 +145,8 @@ body{font-family: mangal;}
                     var a = new Object();
                     var dayInfo = getDayInfo(id);
                     if (dayInfo && dayInfo.length > 0) {
-                        a.b = dayInfo[0].b.trim() != "" ? (', &nbsp' + dayInfo[0].b.trim()) : "";
-                        a.n = dayInfo[0].n.trim() != "" ? (', &nbsp' + dayInfo[0].n.trim()) : "";
+                        a.b = dayInfo[0].b.trim() != "" ? (', &nbsp;' + dayInfo[0].b.trim()) : "";
+                        a.n = dayInfo[0].n.trim() != "" ? (', &nbsp;' + dayInfo[0].n.trim()) : "";
                         a.t = $.trim(dayInfo[0].t);
 						var css = "";
 						if(a.b.trim().length > 0){
