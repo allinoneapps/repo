@@ -1,8 +1,7 @@
 CACHE MANIFEST
-# 2016-03-20 v1.0.0
+# 2016-10-24 v1.0.1
 
 CACHE:
-css/materialize.min.css
 
 NETWORK:
 http://*
