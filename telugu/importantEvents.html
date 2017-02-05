@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html manifest="importantEvents.appcache">
+   <head>
+      <title>Important dates</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="css/materialize.min.css" type="text/css" />
+      <style type="text/css">
+		body {
+            background-color: #d5d5d5;
+		}
+         li{
+         list-style-type: none;
+         }
+		 #table{
+			overflow: scroll;
+		 }
+		 table {font-size:16px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
+		table td {font-size:16px;border-width: 1px;border-style: solid;border-color: #ddd;}
+		ul{-webkit-padding-start: 5px; margin: 10px auto;}
+		.alternate{
+			background-color:#f2f6f7;
+		}
+         img{
+         max-width:100%;height:auto;
+         }
+      </style>
+      <script>
+          function currentMonthOnTop() {
+              var today = new Date();
+                var mm = today.getMonth()+1;
+                document.getElementById(mm).scrollIntoView();
+          }
+      </script>
+   </head>
+   <body onload="currentMonthOnTop()">
+   <div id="eventsDiv">
+      <div class="card white" id="1">
+		<h5 style="padding: 5px">January 2016</h5>
+		<table>
+			<tr>
+				<td>Jan 13</td>
+				<td>Wednesday</td>
+				<td>Lohri</td>
+			</tr>
+			<tr>
+				<td>Jan 16</td>
+				<td>Saturday</td>
+				<td>Guru Gobind Singh Jayanti</td>
+			</tr>
+			<tr>
+				<td>Jan 31</td>
+				<td>Sunday</td>
+				<td>Birthday of Guru Har Rai (Nanakshahi calendar)</td>
+			</tr>
+		</table>
+      </div>
+      <div id="2"></div>
+      <div class="card white" id="3">
+		<h5 style="padding: 5px">March 2016</h5>
+		<table>
+			<tr>
+				<td>Mar 24</td>
+				<td>Thursday</td>
+				<td>Hola Mohalla</td>
+			</tr>
+		</table>
+      </div>
+      <div class="card white" id="4">
+		<h5 style="padding: 5px">April 2016</h5>
+		<table>
+			<tr>
+				<td>Apr 13</td>
+				<td>Wednesday</td>
+				<td>Baisakhi (Khalsa)</td>
+			</tr>
+			<tr>
+				<td>Apr 18</td>
+				<td>Monday</td>
+				<td>Birthday of Guru Angad Dev (Nanakshahi calendar)</td>
+			</tr>
+			<tr>
+				<td>Apr 18</td>
+				<td>Monday</td>
+				<td>Birthday of Guru Tegh Bahadur (Nanakshahi calendar)</td>
+			</tr>
+		</table>
+      </div>
+      <div class="card white" id="5">
+		<h5 style="padding: 5px">May 2016</h5>
+		<table>
+			<tr>
+				<td>May 02</td>
+				<td>Monday</td>
+				<td>Birthday of Guru Arjan Dev (Nanakshahi calendar)</td>
+			</tr>
+			<tr>
+				<td>May 23</td>
+				<td>Monday</td>
+				<td>Birthday of Guru Amar Das (Nanakshahi calendar)</td>
+			</tr>
+		</table>
+      </div>
+      <div class="card white" id="6">
+		<h5 style="padding: 5px">June 2016</h5>
+		<table>
+			<tr>
+				<td>Jun 16</td>
+				<td>Thursday</td>
+				<td>Martyrdom of Guru Arjan Dev (Nanakshahi calendar)</td>
+			</tr>
+		</table>
+      </div>
+      <div class="card white" id="7">
+		<h5 style="padding: 5px">July 2016</h5>
+		<table>
+			<tr>
+				<td>Jul 05</td>
+				<td>Tuesday</td>
+				<td>Birthday of Guru Hargobind (Nanakshahi calendar)</td>
+			</tr>
+			<tr>
+				<td>Jul 23</td>
+				<td>Saturday</td>
+				<td>Birthday of Guru Har Krishen (Nanakshahi calendar)</td>
+			</tr>
+		</table>
+      </div>
+      <div id="8"></div>
+      <div id="9"></div>
+      <div class="card white" id="10">
+		<h5 style="padding: 5px">October 2016</h5>
+		<table>
+			<tr>
+				<td>Oct 09</td>
+				<td>Sunday</td>
+				<td>Birthday of Guru Ram Das (Nanakshahi calendar)</td>
+			</tr>
+			<tr>
+				<td>Oct 20</td>
+				<td>Thursday</td>
+				<td>412th Installation Day of The Guru Granth Sahib</td>
+			</tr>
+			<tr>
+				<td>Oct 30</td>
+				<td>Sunday</td>
+				<td>Diwali</td>
+			</tr>
+		</table>
+      </div>
+      <div class="card white" id="11">
+		<h5 style="padding: 5px">November 2016</h5>
+		<table>
+			<tr>
+				<td>Nov 14</td>
+				<td>Monday</td>
+				<td>Guru Nanak Jayanti</td>
+			</tr>
+			<tr>
+				<td>Nov 24</td>
+				<td>Thursday</td>
+				<td>Martyrdom of Guru Tegh Bahadur (Nanakshahi calendar)</td>
+			</tr>
+		</table>
+      </div>
+      </div>
+   </body>
+</html>
