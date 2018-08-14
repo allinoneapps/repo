@@ -1,0 +1,4 @@
+http://navbharattimes.indiatimes.com/rssfeedsdefault.cms
+http://rss.jagran.com/rss/news/national.xml
+http://www.dailyhindinews.com/feed/
+http://aajtak.intoday.in/rssfeeds/?feed=rss1.0&no_html=1&rsspage=home
