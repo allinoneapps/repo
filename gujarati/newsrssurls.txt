@@ -1,2 +1,3 @@
-http://maharashtratimes.indiatimes.com/rssfeeds/2429656.cms
-http://www.loksatta.com/mumbai/feed/
+http://www.sandesh.com/cms/xml/Sports.xml
+http://www.sandesh.com/cms/xml/Bollywood%20News.xml
+http://navgujaratsamay.indiatimes.com/rssfeedsdefault.cms
