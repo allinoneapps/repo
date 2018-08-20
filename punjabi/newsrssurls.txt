@@ -1,1 +1,7 @@
-
+http://rss.jagran.com/punjabi/rss.xml
+http://www.punjabinewsonline.com/feeds/news_punjab.xml
+http://www.punjabinewsonline.com/feeds/main_news.xml
+http://www.punjabinewsonline.com/feeds/news_india.xml
+http://www.punjabinewsonline.com/feeds/news_nris.xml
+http://punjabnewsusa.com/feed/
+http://www.sikhsiyasat.info/feed/
