@@ -1,2 +1,6 @@
-http://www.sandesh.com/cms/xml/Sports.xml
-http://www.sandesh.com/cms/xml/Bollywood%20News.xml
+https://www.gujaratsamachar.com/rss/top-stories
+https://www.gujaratsamachar.com/rss/category/national
+https://www.gujaratsamachar.com/rss/category/international
+https://www.gujaratsamachar.com/rss/category/sports
+https://www.gujaratsamachar.com/rss/category/entertainment
+https://www.gujaratsamachar.com/rss/category/business
